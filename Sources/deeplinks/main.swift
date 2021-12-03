@@ -6,7 +6,7 @@ struct User {
 }
 
 let users = [
-    User(title: "---NO USER---", token: nil),
+    User(title: "", token: nil),
 
     User(title: "mihai.cristescu@gmail.com (EXVIP)", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTk0ODMwNCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MTkzMDksImV4cCI6MTY1MzY5OTMwOX0.DeGqiQ_q3cj1yDsXsOrM7tqKYq6E5YwQGb9_8Uvww-BO05V8MNzNjeXQIncH1r_hkjazsptQw1QgBMoBGnGJlQ-Mo6IUcRXZYXh3LJiBgPbMvXWTEFLKdcnq2yvJDetInMX_jQguujBFH3oOUy_V18GuWRCtOIJfrMozlhb2eo1DfxW410MPyJHV4tvv6mE6oeLVEsnkjO6vKYtUMqZ9HPDwsyVAguwmltM0sfglYUltjMvJEUldruFFijDvu6lNymfgJAjARayEWDyk6TZpYLUpSHQtQNLHvJnjLaPGSFXDN6F-ZiaDsmmZLnFSST-xdVXvnRjfsKpTI8RlcbhddQ"),
 
@@ -29,6 +29,7 @@ let deeplinks: [Deeplink] = [
     .init(path: ""),
     .init(path: "/app-survey"),
     .init(path: "/auth/reset-password", queryItems: [URLQueryItem(name: "reset_password_token", value: "TOKEN_MISSING")]),
+    .init(path: "/bras-and-panties/cyla-dark-purple"),
     .init(path: "/checkout/cart"),
     .init(path: "/customer/account"),
     .init(path: "/customer/account/personal-info/edit"),
@@ -43,28 +44,30 @@ let deeplinks: [Deeplink] = [
     .init(path: "/messages"),
     .init(path: "/messages/{MESSAGE_ID}"),
     .init(path: "/my-showroom"),
+    .init(path: "/notifications"),
     .init(path: "/sales/order/history"),
-    .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
     .init(path: "/sales/order/view/elite_box/id/review"),
+    .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
     .init(path: "/upgrade-to-elite"),
     .init(path: "/wishlist"),
-    .init(path: "/bras-and-panties/cyla-dark-purple"),
 ]
 
-print("Choose user:")
+print("Choose user: (Press ENTER for no user)")
 let userListing = users.enumerated().map { index, user in
     return "\(index + 1)) \(user.title)"
 }.joined(separator: "\n")
 print(userListing)
-var index = Int(readLine(strippingNewline: true)!)!
+var answer = readLine(strippingNewline: true) ?? "1"
+var index: Int = answer.isEmpty ? 1 : Int(answer)!
 let user = users[index - 1]
 
-print("Choose deeplink:")
+print("Choose deeplink: (Press ENTER for no deeplink)")
 let deeplinkListing = deeplinks.enumerated().map { index, link in
     return "\(index + 1)) \(link.path)"
 }.joined(separator: "\n")
 print(deeplinkListing)
-index = Int(readLine(strippingNewline: true)!)!
+answer = readLine(strippingNewline: true) ?? "1"
+index = answer.isEmpty ? 1 : Int(answer)!
 var deeplink = deeplinks[index - 1]
 
 // Asking for Message ID
