@@ -16,7 +16,7 @@ let users = [
 ]
 
 struct Deeplink {
-    let path: String
+    var path: String
     let queryItems: [URLQueryItem]
 
     init(path: String, queryItems: [URLQueryItem] = []) {
@@ -44,7 +44,7 @@ let deeplinks: [Deeplink] = [
     .init(path: "/messages/ID_MISSING"),
     .init(path: "/my-showroom"),
     .init(path: "/sales/order/history"),
-    .init(path: "/sales/order/view/order_id/ID_MISSING"),
+    .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
     .init(path: "/sales/order/view/elite_box/id/review"),
     .init(path: "/upgrade-to-elite"),
     .init(path: "/wishlist"),
@@ -65,7 +65,15 @@ let deeplinkListing = deeplinks.enumerated().map { index, link in
 }.joined(separator: "\n")
 print(deeplinkListing)
 index = Int(readLine(strippingNewline: true)!)!
-let deeplink = deeplinks[index - 1]
+var deeplink = deeplinks[index - 1]
+
+// Asking for order ID
+if deeplink.path.contains("{ORDER_ID}") {
+    print("Order ID? (Press ENTER for 406766536)")
+    let orderID = readLine(strippingNewline: true)
+    let id = (orderID ?? "").isEmpty ? "406766536" : orderID!
+    deeplink.path = deeplink.path.replacingOccurrences(of: "{ORDER_ID}", with: id)
+}
 
 var components = URLComponents()
 components.scheme = "https"
