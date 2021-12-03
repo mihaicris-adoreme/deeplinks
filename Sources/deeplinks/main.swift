@@ -41,7 +41,7 @@ let deeplinks: [Deeplink] = [
     .init(path: "/elite-dashboard/my-elite-list"),
     .init(path: "/elite-dashboard/my-preferences"),
     .init(path: "/messages"),
-    .init(path: "/messages/ID_MISSING"),
+    .init(path: "/messages/{MESSAGE_ID}"),
     .init(path: "/my-showroom"),
     .init(path: "/sales/order/history"),
     .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
@@ -66,6 +66,14 @@ let deeplinkListing = deeplinks.enumerated().map { index, link in
 print(deeplinkListing)
 index = Int(readLine(strippingNewline: true)!)!
 var deeplink = deeplinks[index - 1]
+
+// Asking for Message ID
+if deeplink.path.contains("{MESSAGE_ID}") {
+    print("Message ID? (Press ENTER for 1)")
+    let messageID = readLine(strippingNewline: true)
+    let id = (messageID ?? "").isEmpty ? "1" : messageID!
+    deeplink.path = deeplink.path.replacingOccurrences(of: "{MESSAGE_ID}", with: id)
+}
 
 // Asking for order ID
 if deeplink.path.contains("{ORDER_ID}") {
