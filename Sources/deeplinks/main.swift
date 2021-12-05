@@ -6,7 +6,7 @@ struct User {
 }
 
 let users = [
-    User(title: "", token: nil),
+    User(title: "No softlogin", token: nil),
 
     User(title: "mihai.cristescu@gmail.com (EXVIP)", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTk0ODMwNCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MTkzMDksImV4cCI6MTY1MzY5OTMwOX0.DeGqiQ_q3cj1yDsXsOrM7tqKYq6E5YwQGb9_8Uvww-BO05V8MNzNjeXQIncH1r_hkjazsptQw1QgBMoBGnGJlQ-Mo6IUcRXZYXh3LJiBgPbMvXWTEFLKdcnq2yvJDetInMX_jQguujBFH3oOUy_V18GuWRCtOIJfrMozlhb2eo1DfxW410MPyJHV4tvv6mE6oeLVEsnkjO6vKYtUMqZ9HPDwsyVAguwmltM0sfglYUltjMvJEUldruFFijDvu6lNymfgJAjARayEWDyk6TZpYLUpSHQtQNLHvJnjLaPGSFXDN6F-ZiaDsmmZLnFSST-xdVXvnRjfsKpTI8RlcbhddQ"),
 
@@ -41,6 +41,7 @@ let deeplinks: [Deeplink] = [
     .init(path: "/elite-dashboard/history"),
     .init(path: "/elite-dashboard/my-elite-list"),
     .init(path: "/elite-dashboard/my-preferences"),
+    .init(path: "/logout"),
     .init(path: "/messages"),
     .init(path: "/messages/{MESSAGE_ID}"),
     .init(path: "/my-showroom"),
@@ -52,18 +53,20 @@ let deeplinks: [Deeplink] = [
     .init(path: "/wishlist"),
 ]
 
-print("Choose user: (Press ENTER for no user)")
+print("Choose softlogin user: (Press ENTER for no user)")
 let userListing = users.enumerated().map { index, user in
-    return "\(index + 1)) \(user.title)"
+    let no = String(index + 1).paddingToLeft(upTo: 2)
+    return "\(no)) \(user.title)"
 }.joined(separator: "\n")
 print(userListing)
 var answer = readLine(strippingNewline: true) ?? "1"
 var index: Int = answer.isEmpty ? 1 : Int(answer)!
 let user = users[index - 1]
 
-print("Choose deeplink: (Press ENTER for no deeplink)")
+print("Choose navigation deeplink: (Press ENTER for no deeplink)")
 let deeplinkListing = deeplinks.enumerated().map { index, link in
-    return "\(index + 1)) \(link.path)"
+    let no = String(index + 1).paddingToLeft(upTo: 2)
+    return "\(no)) \(link.path)"
 }.joined(separator: "\n")
 print(deeplinkListing)
 answer = readLine(strippingNewline: true) ?? "1"
@@ -95,7 +98,7 @@ var queryItems: [URLQueryItem] = []
 
 queryItems.append(contentsOf: deeplink.queryItems)
 
-if let token = user.token {
+if let token = user.token, deeplink.path != "/logout" {
     queryItems.append(URLQueryItem(name: "am_sl", value: token))
 }
 
