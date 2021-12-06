@@ -26,7 +26,7 @@ struct Deeplink {
 }
 
 let deeplinks: [Deeplink] = [
-    .init(path: ""),
+    .init(path: "/"),
     .init(path: "/app-survey"),
     .init(path: "/auth/reset-password", queryItems: [URLQueryItem(name: "reset_password_token", value: "TOKEN_MISSING")]),
     .init(path: "/bras-and-panties/cyla-dark-purple"),
@@ -53,79 +53,85 @@ let deeplinks: [Deeplink] = [
     .init(path: "/wishlist"),
 ]
 
-print("Choose softlogin user: (Press ENTER for no user)")
-let userListing = users.enumerated().map { index, user in
-    let no = String(index + 1).paddingToLeft(upTo: 2)
-    return "\(no)) \(user.title)"
-}.joined(separator: "\n")
-print(userListing)
-var answer = readLine(strippingNewline: true) ?? "1"
-var index: Int = answer.isEmpty ? 1 : Int(answer)!
-let user = users[index - 1]
+func makeDeeplink() {
+    print("Choose softlogin user: (Press ENTER for no user)")
+    let userListing = users.enumerated().map { index, user in
+        let no = String(index + 1).paddingToLeft(upTo: 2)
+        return "\(no)) \(user.title)"
+    }.joined(separator: "\n")
+    print(userListing)
+    var answer = readLine(strippingNewline: true) ?? "1"
+    var index: Int = answer.isEmpty ? 1 : Int(answer)!
+    let user = users[index - 1]
 
-print("Choose navigation deeplink: (Press ENTER for no deeplink)")
-let deeplinkListing = deeplinks.enumerated().map { index, link in
-    let no = String(index + 1).paddingToLeft(upTo: 2)
-    return "\(no)) \(link.path)"
-}.joined(separator: "\n")
-print(deeplinkListing)
-answer = readLine(strippingNewline: true) ?? "1"
-index = answer.isEmpty ? 1 : Int(answer)!
-var deeplink = deeplinks[index - 1]
+    print("Choose navigation deeplink: (Press ENTER for no deeplink)")
+    let deeplinkListing = deeplinks.enumerated().map { index, link in
+        let no = String(index + 1).paddingToLeft(upTo: 2)
+        return "\(no)) \(link.path)"
+    }.joined(separator: "\n")
+    print(deeplinkListing)
+    answer = readLine(strippingNewline: true) ?? "1"
+    index = answer.isEmpty ? 1 : Int(answer)!
+    var deeplink = deeplinks[index - 1]
 
-// Asking for Message ID
-if deeplink.path.contains("{MESSAGE_ID}") {
-    print("Message ID? (Press ENTER for 1)")
-    let messageID = readLine(strippingNewline: true)
-    let id = (messageID ?? "").isEmpty ? "1" : messageID!
-    deeplink.path = deeplink.path.replacingOccurrences(of: "{MESSAGE_ID}", with: id)
+    // Asking for Message ID
+    if deeplink.path.contains("{MESSAGE_ID}") {
+        print("Message ID? (Press ENTER for 1)")
+        let messageID = readLine(strippingNewline: true)
+        let id = (messageID ?? "").isEmpty ? "1" : messageID!
+        deeplink.path = deeplink.path.replacingOccurrences(of: "{MESSAGE_ID}", with: id)
+    }
+
+    // Asking for order ID
+    if deeplink.path.contains("{ORDER_ID}") {
+        print("Order ID? (Press ENTER for 406766536)")
+        let orderID = readLine(strippingNewline: true)
+        let id = (orderID ?? "").isEmpty ? "406766536" : orderID!
+        deeplink.path = deeplink.path.replacingOccurrences(of: "{ORDER_ID}", with: id)
+    }
+
+    var components = URLComponents()
+    components.scheme = "https"
+    components.host = "www.adoreme.com"
+    components.path = deeplink.path == "/" ? "" : deeplink.path
+
+    var queryItems: [URLQueryItem] = []
+
+    queryItems.append(contentsOf: deeplink.queryItems)
+
+    if let token = user.token, deeplink.path != "/logout" {
+        queryItems.append(URLQueryItem(name: "am_sl", value: token))
+    }
+
+    if !queryItems.isEmpty {
+        components.queryItems = queryItems
+    }
+
+    guard let url = components.url?.absoluteString else { exit(1) }
+
+    @discardableResult
+    func shell(_ command: String) -> String {
+       let task = Process()
+       let pipe = Pipe()
+
+       task.standardOutput = pipe
+       task.standardError = pipe
+       task.arguments = ["-c", command]
+       task.launchPath = "/bin/zsh"
+       task.launch()
+
+       let data = pipe.fileHandleForReading.readDataToEndOfFile()
+       let output = String(data: data, encoding: .utf8)!
+
+       return output
+    }
+
+    shell("xcrun simctl openurl booted \"\(url)\"")
+    shell("$HOME/Library/Android/sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d \"\(url)\"")
+
+    print("\nResolved URL:\n\(url)\n")
 }
 
-// Asking for order ID
-if deeplink.path.contains("{ORDER_ID}") {
-    print("Order ID? (Press ENTER for 406766536)")
-    let orderID = readLine(strippingNewline: true)
-    let id = (orderID ?? "").isEmpty ? "406766536" : orderID!
-    deeplink.path = deeplink.path.replacingOccurrences(of: "{ORDER_ID}", with: id)
+while true {
+    makeDeeplink()
 }
-
-var components = URLComponents()
-components.scheme = "https"
-components.host = "www.adoreme.com"
-components.path = deeplink.path
-
-var queryItems: [URLQueryItem] = []
-
-queryItems.append(contentsOf: deeplink.queryItems)
-
-if let token = user.token, deeplink.path != "/logout" {
-    queryItems.append(URLQueryItem(name: "am_sl", value: token))
-}
-
-if !queryItems.isEmpty {
-    components.queryItems = queryItems
-}
-
-guard let url = components.url?.absoluteString else { exit(1) }
-
-@discardableResult
-func shell(_ command: String) -> String {
-   let task = Process()
-   let pipe = Pipe()
-
-   task.standardOutput = pipe
-   task.standardError = pipe
-   task.arguments = ["-c", command]
-   task.launchPath = "/bin/zsh"
-   task.launch()
-
-   let data = pipe.fileHandleForReading.readDataToEndOfFile()
-   let output = String(data: data, encoding: .utf8)!
-
-   return output
-}
-
-shell("xcrun simctl openurl booted \"\(url)\"")
-shell("$HOME/Library/Android/sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d \"\(url)\"")
-
-print("Resolved URL:\n\(url)")
