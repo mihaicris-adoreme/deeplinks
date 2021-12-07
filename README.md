@@ -2,8 +2,5 @@ Test deeplinks in AdoreMe iOS and Android apps
 
 # Install
 - Clone the sources
-- Build 
-swift build -c release
-- Run
-.build/release/deeplinks
-
+- Build app with: swift build -c release
+- Run app with: .build/release/deeplinks
