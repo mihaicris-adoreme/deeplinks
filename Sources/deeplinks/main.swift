@@ -1,18 +1,41 @@
 import Foundation
 
-struct User {
+struct Action {
     let title: String
-    let token: String?
+    var userToken: String? = nil
+    var deeplink: Deeplink? = nil
 }
 
-let users = [
-    User(title: "No softlogin", token: nil),
+let actions = [
+    Action(
+        title: "No softlogin",
+        userToken: nil,
+        deeplink: nil),
 
-    User(title: "mihai.cristescu@gmail.com (EXVIP)", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTk0ODMwNCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MTkzMDksImV4cCI6MTY1MzY5OTMwOX0.DeGqiQ_q3cj1yDsXsOrM7tqKYq6E5YwQGb9_8Uvww-BO05V8MNzNjeXQIncH1r_hkjazsptQw1QgBMoBGnGJlQ-Mo6IUcRXZYXh3LJiBgPbMvXWTEFLKdcnq2yvJDetInMX_jQguujBFH3oOUy_V18GuWRCtOIJfrMozlhb2eo1DfxW410MPyJHV4tvv6mE6oeLVEsnkjO6vKYtUMqZ9HPDwsyVAguwmltM0sfglYUltjMvJEUldruFFijDvu6lNymfgJAjARayEWDyk6TZpYLUpSHQtQNLHvJnjLaPGSFXDN6F-ZiaDsmmZLnFSST-xdVXvnRjfsKpTI8RlcbhddQ"),
+    Action(
+        title: "Logout",
+        userToken: nil,
+        deeplink: .init(path: "/logout")
+    ),
 
-    User(title: "vlad.georgescu+a04@adoreme.com (VIP)", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTYzNjY1NiIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzYwMzQsImV4cCI6MTY1MzcxNjAzNH0.W35N7YcUa-MWHhUkq3vEeOejWyBTBZxEvdwyVYuJi4EN2x0Vrt-IeErEq93ecJrqMi8gwklLoLplM-mrgjhzqb6aHturtO0iL8sMuEgmsQTk7wiORKBa3nBN5CPMGEWyEuu6_d08FwTvL56RJm8TE7FgB50mZ7k2YETbu2HDtsPIgDoGsHjjOCl0uU32S-kw0l16ipMw0VHxewpyUYdipeVSk_vYrWjSw40znNT2UA-ahox6p6uYFEDWyhla0i0AmVVthEuCTn17WFpRyfEIJUTTed7Pn-StpcpsYHXkvCEgPq_-znxWWIL2uQjgTc8cYe1c_iHz-fYkSWrIZPZ36Q"),
+    Action(
+        title: "mihai.cristescu@adoreme.com (EXVIP)",
+        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyODMxODE0MCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzg3ODg2NjUsImV4cCI6MTY1NDU2ODY2NX0.oaW79X0rtt8BYD4Pwy0bOMgqUIL6gHhCrp8fL1GsZ15hJ-5xj-qNj-YJbliZLUAmkI5OUs05o6U9cxD_xQaWJRXSNRhPLWfejmEKjzKaRRjmFtV8Kr_RauW7YAQ8m6Z-8Vh7t2aTiP0S3_vK31lctnD11ZF2hXvAZ2F2DtQatmp0wU145iDHYN28a22zCVdooBx5_SaiUFhl71NNtsF5PmbadkY4ne8XzHts84TbpLwsrhag2onL-38n4j3jcyHPzxIHwfn6aroojif0XaqxO9N2bDGJfHkfcE00i6nqJXuIoAEPsNYp2Vw5cKNooiizcr2BpG0hHYL96zoSqkWmYg",
+        deeplink: nil
+    ),
 
-    User(title: "cionita+tlm@adoreme.com (ELITE)", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw"),
+    Action(
+        title: "vlad.georgescu+a04@adoreme.com (VIP)",
+        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTYzNjY1NiIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzYwMzQsImV4cCI6MTY1MzcxNjAzNH0.W35N7YcUa-MWHhUkq3vEeOejWyBTBZxEvdwyVYuJi4EN2x0Vrt-IeErEq93ecJrqMi8gwklLoLplM-mrgjhzqb6aHturtO0iL8sMuEgmsQTk7wiORKBa3nBN5CPMGEWyEuu6_d08FwTvL56RJm8TE7FgB50mZ7k2YETbu2HDtsPIgDoGsHjjOCl0uU32S-kw0l16ipMw0VHxewpyUYdipeVSk_vYrWjSw40znNT2UA-ahox6p6uYFEDWyhla0i0AmVVthEuCTn17WFpRyfEIJUTTed7Pn-StpcpsYHXkvCEgPq_-znxWWIL2uQjgTc8cYe1c_iHz-fYkSWrIZPZ36Q",
+        deeplink: nil
+    ),
+
+
+    Action(title: "cionita+tlm@adoreme.com (ELITE)",
+           userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw",
+           deeplink: nil
+          ),
+
 ]
 
 struct Deeplink {
@@ -41,7 +64,6 @@ let deeplinks: [Deeplink] = [
     .init(path: "/elite-dashboard/history"),
     .init(path: "/elite-dashboard/my-elite-list"),
     .init(path: "/elite-dashboard/my-preferences"),
-    .init(path: "/logout"),
     .init(path: "/messages"),
     .init(path: "/messages/{MESSAGE_ID}"),
     .init(path: "/my-showroom"),
@@ -49,32 +71,43 @@ let deeplinks: [Deeplink] = [
     .init(path: "/sales/order/history"),
     .init(path: "/sales/order/view/elite_box/id/review"),
     .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
+    .init(path: "/try-adoreme-elite"),
     .init(path: "/upgrade-to-elite"),
     .init(path: "/wishlist"),
 ]
 
 func makeDeeplink() {
+
+    // SELECT ACTION
     print("Choose softlogin user: (Press ENTER for no user)")
-    let userListing = users.enumerated().map { index, user in
+    let userListing = actions.enumerated().map { index, user in
         let no = String(index + 1).paddingToLeft(upTo: 2)
         return "\(no)) \(user.title)"
     }.joined(separator: "\n")
     print(userListing)
     var answer = readLine(strippingNewline: true) ?? "1"
-    var index: Int = answer.isEmpty ? 1 : Int(answer)!
-    let user = users[index - 1]
+    var index: Int = answer.isEmpty ? 1 : Int(answer) ?? 1
+    var action = actions[index - 1]
 
-    print("Choose navigation deeplink: (Press ENTER for no deeplink)")
-    let deeplinkListing = deeplinks.enumerated().map { index, link in
-        let no = String(index + 1).paddingToLeft(upTo: 2)
-        return "\(no)) \(link.path)"
-    }.joined(separator: "\n")
-    print(deeplinkListing)
-    answer = readLine(strippingNewline: true) ?? "1"
-    index = answer.isEmpty ? 1 : Int(answer)!
-    var deeplink = deeplinks[index - 1]
+    // Ask for DEEPLINK if missing
+    if action.deeplink == nil {
+        print("Choose navigation deeplink: (Press ENTER for no deeplink)")
+        let deeplinkListing = deeplinks.enumerated().map { index, link in
+            let no = String(index).paddingToLeft(upTo: 2)
+            return "\(no)) \(link.path)"
+        }.joined(separator: "\n")
+        print(deeplinkListing)
+        answer = readLine(strippingNewline: true) ?? "1"
+        index = answer.isEmpty ? 1 : Int(answer) ?? 1
+        action.deeplink = deeplinks[index]
+    }
 
-    // Asking for Message ID
+    guard var deeplink = action.deeplink else {
+        print("Deeplink not set")
+        exit(1)
+    }
+
+    // ASK for Message ID
     if deeplink.path.contains("{MESSAGE_ID}") {
         print("Message ID? (Press ENTER for 1)")
         let messageID = readLine(strippingNewline: true)
@@ -82,7 +115,7 @@ func makeDeeplink() {
         deeplink.path = deeplink.path.replacingOccurrences(of: "{MESSAGE_ID}", with: id)
     }
 
-    // Asking for order ID
+    // ASK for Order ID
     if deeplink.path.contains("{ORDER_ID}") {
         print("Order ID? (Press ENTER for 406766536)")
         let orderID = readLine(strippingNewline: true)
@@ -99,7 +132,7 @@ func makeDeeplink() {
 
     queryItems.append(contentsOf: deeplink.queryItems)
 
-    if let token = user.token, deeplink.path != "/logout" {
+    if let token = action.userToken {
         queryItems.append(URLQueryItem(name: "am_sl", value: token))
     }
 
@@ -135,3 +168,4 @@ func makeDeeplink() {
 while true {
     makeDeeplink()
 }
+
