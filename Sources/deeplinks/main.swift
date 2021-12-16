@@ -34,7 +34,25 @@ let actions = [
     Action(title: "cionita+tlm@adoreme.com (ELITE)",
            userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw",
            deeplink: nil
-          ),
+    ),
+
+    Action(
+        title: "Firebase DynLink mihai.cristescu@adoreme.com (EXVIP)",
+        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyODMxODE0MCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzg3ODg2NjUsImV4cCI6MTY1NDU2ODY2NX0.oaW79X0rtt8BYD4Pwy0bOMgqUIL6gHhCrp8fL1GsZ15hJ-5xj-qNj-YJbliZLUAmkI5OUs05o6U9cxD_xQaWJRXSNRhPLWfejmEKjzKaRRjmFtV8Kr_RauW7YAQ8m6Z-8Vh7t2aTiP0S3_vK31lctnD11ZF2hXvAZ2F2DtQatmp0wU145iDHYN28a22zCVdooBx5_SaiUFhl71NNtsF5PmbadkY4ne8XzHts84TbpLwsrhag2onL-38n4j3jcyHPzxIHwfn6aroojif0XaqxO9N2bDGJfHkfcE00i6nqJXuIoAEPsNYp2Vw5cKNooiizcr2BpG0hHYL96zoSqkWmYg",
+        deeplink: nil
+    ),
+
+    Action(
+        title: "Firebase DynLink  vlad.georgescu+a04@adoreme.com (VIP)",
+        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTYzNjY1NiIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzYwMzQsImV4cCI6MTY1MzcxNjAzNH0.W35N7YcUa-MWHhUkq3vEeOejWyBTBZxEvdwyVYuJi4EN2x0Vrt-IeErEq93ecJrqMi8gwklLoLplM-mrgjhzqb6aHturtO0iL8sMuEgmsQTk7wiORKBa3nBN5CPMGEWyEuu6_d08FwTvL56RJm8TE7FgB50mZ7k2YETbu2HDtsPIgDoGsHjjOCl0uU32S-kw0l16ipMw0VHxewpyUYdipeVSk_vYrWjSw40znNT2UA-ahox6p6uYFEDWyhla0i0AmVVthEuCTn17WFpRyfEIJUTTed7Pn-StpcpsYHXkvCEgPq_-znxWWIL2uQjgTc8cYe1c_iHz-fYkSWrIZPZ36Q",
+        deeplink: nil
+    ),
+
+
+    Action(title: "Firebase DynLink cionita+tlm@adoreme.com (ELITE)",
+           userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw",
+           deeplink: nil
+    ),
 
 ]
 
@@ -69,7 +87,7 @@ let deeplinks: [Deeplink] = [
     .init(path: "/my-showroom"),
     .init(path: "/notifications"),
     .init(path: "/sales/order/history"),
-    .init(path: "/sales/order/view/elite_box/id/review"),
+    .init(path: "/sales/order/view/elite_box/{ORDER_ID}/review"),
     .init(path: "/sales/order/view/order_id/{ORDER_ID}"),
     .init(path: "/try-adoreme-elite"),
     .init(path: "/upgrade-to-elite"),
@@ -93,13 +111,13 @@ func makeDeeplink() {
     if action.deeplink == nil {
         print("Choose navigation deeplink: (Press ENTER for no deeplink)")
         let deeplinkListing = deeplinks.enumerated().map { index, link in
-            let no = String(index).paddingToLeft(upTo: 2)
+            let no = String(index + 1).paddingToLeft(upTo: 2)
             return "\(no)) \(link.path)"
         }.joined(separator: "\n")
         print(deeplinkListing)
         answer = readLine(strippingNewline: true) ?? "1"
         index = answer.isEmpty ? 1 : Int(answer) ?? 1
-        action.deeplink = deeplinks[index]
+        action.deeplink = deeplinks[index - 1]
     }
 
     guard var deeplink = action.deeplink else {
@@ -123,46 +141,15 @@ func makeDeeplink() {
         deeplink.path = deeplink.path.replacingOccurrences(of: "{ORDER_ID}", with: id)
     }
 
-    var components = URLComponents()
-    components.scheme = "https"
-    components.host = "www.adoreme.com"
-    components.path = deeplink.path == "/" ? "" : deeplink.path
+    let urlString = generateURL(action: action, deeplink: deeplink)
 
-    var queryItems: [URLQueryItem] = []
-
-    queryItems.append(contentsOf: deeplink.queryItems)
-
-    if let token = action.userToken {
-        queryItems.append(URLQueryItem(name: "am_sl", value: token))
+    if action.title.starts(with: "Firebase"),
+       let urlString = urlString {
+        let firebaseUrlString = generateFirebaseDynamicLinkURL(urlString: urlString)
+        sendLink(firebaseUrlString)
+    } else {
+        sendLink(urlString)
     }
-
-    if !queryItems.isEmpty {
-        components.queryItems = queryItems
-    }
-
-    guard let url = components.url?.absoluteString else { exit(1) }
-
-    @discardableResult
-    func shell(_ command: String) -> String {
-       let task = Process()
-       let pipe = Pipe()
-
-       task.standardOutput = pipe
-       task.standardError = pipe
-       task.arguments = ["-c", command]
-       task.launchPath = "/bin/zsh"
-       task.launch()
-
-       let data = pipe.fileHandleForReading.readDataToEndOfFile()
-       let output = String(data: data, encoding: .utf8)!
-
-       return output
-    }
-
-    shell("xcrun simctl openurl booted \"\(url)\"")
-    shell("$HOME/Library/Android/sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d \"\(url)\"")
-
-    print("\nResolved URL:\n\(url)\n")
 }
 
 while true {
