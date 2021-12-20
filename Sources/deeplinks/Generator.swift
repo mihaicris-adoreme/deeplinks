@@ -6,7 +6,6 @@ func generateURL(action: Action, deeplink: Deeplink) -> String? {
 
     components.scheme = "https"
     components.host = "www.adoreme.com"
-    components.path = deeplink.path == "/" ? "" : deeplink.path
     queryItems.append(contentsOf: deeplink.queryItems)
 
     if let token = action.userToken {
@@ -16,6 +15,14 @@ func generateURL(action: Action, deeplink: Deeplink) -> String? {
     if !queryItems.isEmpty {
         components.queryItems = queryItems
     }
+
+    var path = deeplink.path
+
+    if queryItems.isEmpty && deeplink.path == "/" {
+        path = ""
+    }
+
+    components.path = path
 
     return components.url?.absoluteString
 }
