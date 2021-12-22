@@ -104,6 +104,7 @@ let deeplinks: [Deeplink] = [
     .init(path: "/try-adoreme-elite"),
     .init(path: "/upgrade-to-elite"),
     .init(path: "/wishlist"),
+    .init(path: "-----------Pages---------------"),
     .init(path: "/2-pack-sleepwear-surprise-box"),
     .init(path: "/5-for-25"),
     .init(path: "/50-gift-card"),
@@ -181,25 +182,34 @@ func makeDeeplink() {
     // SELECT ACTION
     print("Choose softlogin user: (Press ENTER for no user)")
     let userListing = actions.enumerated().map { index, user in
-        let no = String(index + 1).paddingToLeft(upTo: 2)
+        let no = String(index).paddingToLeft(upTo: 3)
         return "\(no)) \(user.title)"
     }.joined(separator: "\n")
     print(userListing)
-    var answer = readLine(strippingNewline: true) ?? "1"
-    var index: Int = answer.isEmpty ? 1 : Int(answer) ?? 1
-    var action = actions[index - 1]
+    var answer = readLine(strippingNewline: true) ?? "0"
+    var index: Int = answer.isEmpty ? 0 : Int(answer) ?? 0
+    guard index >= 0 && index <= actions.count else {
+        print("Invalid selection, try again.")
+        return
+    }
+    var action = actions[index]
 
     // Ask for DEEPLINK if missing
     if action.deeplink == nil {
         print("Choose navigation deeplink: (Press ENTER for no deeplink)")
         let deeplinkListing = deeplinks.enumerated().map { index, link in
-            let no = String(index + 1).paddingToLeft(upTo: 2)
+            let no = String(index).paddingToLeft(upTo: 3)
             return "\(no)) \(link.path)"
         }.joined(separator: "\n")
         print(deeplinkListing)
-        answer = readLine(strippingNewline: true) ?? "1"
-        index = answer.isEmpty ? 1 : Int(answer) ?? 1
-        action.deeplink = deeplinks[index - 1]
+        answer = readLine(strippingNewline: true) ?? "0"
+        index = answer.isEmpty ? 0 : Int(answer) ?? 0
+        guard index >= 0 && index <= deeplinks.count else {
+            print("Invalid selection, try again.")
+            return
+        }
+
+        action.deeplink = deeplinks[index]
     }
 
     guard var deeplink = action.deeplink else {
