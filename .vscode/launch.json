@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug deeplinks",
+            "program": "${workspaceFolder}/.build/debug/deeplinks",
+            "args": [],
+            "cwd": "${workspaceFolder:deeplinks}",
+            "preLaunchTask": "swift: Build Debug deeplinks"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release deeplinks",
+            "program": "${workspaceFolder}/.build/release/deeplinks",
+            "args": [],
+            "cwd": "${workspaceFolder:deeplinks}",
+            "preLaunchTask": "swift: Build Release deeplinks"
+        }
+    ]
+}
