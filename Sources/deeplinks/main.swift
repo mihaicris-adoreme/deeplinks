@@ -237,7 +237,6 @@ let deeplinks: [Deeplink] = [
     .init(path: "-----------Pages---------------"),
     .init(path: "/app-survey"),
     .init(path: "/auth/reset-password", queryItems: [URLQueryItem(name: "reset_password_token", value: "TOKEN_MISSING")]),
-    .init(path: "/bras-and-panties/cyla-dark-purple"),
     .init(path: "/checkout/cart"),
     .init(path: "/customer/account"),
     .init(path: "/customer/account/personal-info/edit"),
