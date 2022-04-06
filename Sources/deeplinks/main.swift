@@ -1,5 +1,10 @@
 import Foundation
 
+let userExVip = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJpc3MiOiJHdy1NYWluIiwiaWF0IjoxNjQ5MjQzODQxLCJleHAiOjE2NjUwMjM4NDEsInN1YiI6IjI4MzE4MTQwIn0.mGJQnzEwdDoDMui5bUt_jv3eJQp9bw7Am6oJnS7k7rcPDHVEdJ1HCIpHNHHjmcyxOmXVdQq1D3K2CluZDnh81UMeBCLF00Z5HaO0yTnEPXAfqr_QVcB6NClg1fTsBc3ja1QSDuHpaP6wcVTVSDhnCYFT91JOahgPy2QtNJQMJ7ATHDTx4AZht2GF98czgcV0vmLQ3ZenDBu1CVlgikx-uLWNSiHDa6fNvK_pJ_Itdv8WND-hSco7GmzoTHk8pDVOnCyQAMQYIBdQ_ZLxKtOs14gRMIZtTjs7dDq4lldkPIhoSATOl0u2C6AewiHGymn3zJlNMc6CzFC_Q_jqThBU0g"
+let userVip = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJpc3MiOiJHdy1NYWluIiwiaWF0IjoxNjQ5MjQzNjQ2LCJleHAiOjE2NjUwMjM2NDYsInN1YiI6IjI1NjM2NjU2In0.rJsWpyTguBi9CI671QslBflLR3n3J6vceGQKwwEDdO-tlucMZa0mOlwF6PscLbB50h3HJMg3MA0PPxPYh_I4ors_DSvRrefbzf2dOTxMT3KRvcfR09zzorUaYSt8_BjNMp44cbvUgA7rTBPC6RU1LCqNltOa3HRbSAsaiaBfX0ixgUYf4hnsc5GEVQq06dhzbZodoWQpa9pJwOBvY-sExYWuKVsVNYie9m3fVjR_cj6Kru2ojrAKnF8snGGs-fAwGmgrKeql2D4QUc7OIOOzM2yXxomrKWQ5PevapL0xvqQfkzwXVjkFraxEUtY6-j0-pskbvaZt4E8jL_ZJwYWaPQ"
+
+let userElite = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJpc3MiOiJHdy1NYWluIiwiaWF0IjoxNjQ5MjQzNzIxLCJleHAiOjE2NjUwMjM3MjEsInN1YiI6IjI2MzkyODU0In0.YC9PzNvBQ-yunfEReRo2R96uEC5uGIzW9An8AsERLCNildSAUAZBZkHfBFbhFePth11yXtwoZk2T2VkF3gnlR_V9eHDc1vzgD0N0n4oI8e-y4LwctyfWbWO1hAPtZuYn5bSyxZOO8f_7PhpNym1u3a8-0XyttRuwfBPryBlTwp7WS8bpRJboOxRtO6eUZC1dc6uMSePB8vIPiLQMcY21OA3Vqn5-Za0-M-kBOemkK_qEpIFu5IW8ESll3sMvAuAYNObUmQkruuPQbJ9BwttZGoMp01Jn0m-zF2czn9kwTFELOZJgiTB6k8cuS3GfaF8PlQ94eOP6cCMAkVR9lFy5Tg"
+
 struct Action {
     let title: String
     var userToken: String? = nil
@@ -7,65 +12,16 @@ struct Action {
 }
 
 let actions = [
-    Action(
-        title: "No softlogin",
-        userToken: nil,
-        deeplink: nil),
-
-    Action(
-        title: "Logout",
-        userToken: nil,
-        deeplink: .init(path: "/logout")
-    ),
-
-    Action(
-        title: "Close app",
-        userToken: nil,
-        deeplink: .init(path: "/close-app")
-    ),
-
-    Action(
-        title: "mihai.cristescu@adoreme.com (EXVIP)",
-        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyODMxODE0MCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzg3ODg2NjUsImV4cCI6MTY1NDU2ODY2NX0.oaW79X0rtt8BYD4Pwy0bOMgqUIL6gHhCrp8fL1GsZ15hJ-5xj-qNj-YJbliZLUAmkI5OUs05o6U9cxD_xQaWJRXSNRhPLWfejmEKjzKaRRjmFtV8Kr_RauW7YAQ8m6Z-8Vh7t2aTiP0S3_vK31lctnD11ZF2hXvAZ2F2DtQatmp0wU145iDHYN28a22zCVdooBx5_SaiUFhl71NNtsF5PmbadkY4ne8XzHts84TbpLwsrhag2onL-38n4j3jcyHPzxIHwfn6aroojif0XaqxO9N2bDGJfHkfcE00i6nqJXuIoAEPsNYp2Vw5cKNooiizcr2BpG0hHYL96zoSqkWmYg",
-        deeplink: nil
-    ),
-
-    Action(
-        title: "vlad.georgescu+a04@adoreme.com (VIP)",
-        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTYzNjY1NiIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzYwMzQsImV4cCI6MTY1MzcxNjAzNH0.W35N7YcUa-MWHhUkq3vEeOejWyBTBZxEvdwyVYuJi4EN2x0Vrt-IeErEq93ecJrqMi8gwklLoLplM-mrgjhzqb6aHturtO0iL8sMuEgmsQTk7wiORKBa3nBN5CPMGEWyEuu6_d08FwTvL56RJm8TE7FgB50mZ7k2YETbu2HDtsPIgDoGsHjjOCl0uU32S-kw0l16ipMw0VHxewpyUYdipeVSk_vYrWjSw40znNT2UA-ahox6p6uYFEDWyhla0i0AmVVthEuCTn17WFpRyfEIJUTTed7Pn-StpcpsYHXkvCEgPq_-znxWWIL2uQjgTc8cYe1c_iHz-fYkSWrIZPZ36Q",
-        deeplink: nil
-    ),
-
-
-    Action(title: "cionita+tlm@adoreme.com (ELITE)",
-           userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw",
-           deeplink: nil
-          ),
-
-    Action(
-        title: "Firebase DynLink",
-        userToken: nil,
-        deeplink: nil
-    ),
-
-    Action(
-        title: "Firebase DynLink mihai.cristescu@adoreme.com (EXVIP)",
-        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyODMxODE0MCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzg3ODg2NjUsImV4cCI6MTY1NDU2ODY2NX0.oaW79X0rtt8BYD4Pwy0bOMgqUIL6gHhCrp8fL1GsZ15hJ-5xj-qNj-YJbliZLUAmkI5OUs05o6U9cxD_xQaWJRXSNRhPLWfejmEKjzKaRRjmFtV8Kr_RauW7YAQ8m6Z-8Vh7t2aTiP0S3_vK31lctnD11ZF2hXvAZ2F2DtQatmp0wU145iDHYN28a22zCVdooBx5_SaiUFhl71NNtsF5PmbadkY4ne8XzHts84TbpLwsrhag2onL-38n4j3jcyHPzxIHwfn6aroojif0XaqxO9N2bDGJfHkfcE00i6nqJXuIoAEPsNYp2Vw5cKNooiizcr2BpG0hHYL96zoSqkWmYg",
-        deeplink: nil
-    ),
-
-    Action(
-        title: "Firebase DynLink vlad.georgescu+a04@adoreme.com (VIP)",
-        userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNTYzNjY1NiIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzYwMzQsImV4cCI6MTY1MzcxNjAzNH0.W35N7YcUa-MWHhUkq3vEeOejWyBTBZxEvdwyVYuJi4EN2x0Vrt-IeErEq93ecJrqMi8gwklLoLplM-mrgjhzqb6aHturtO0iL8sMuEgmsQTk7wiORKBa3nBN5CPMGEWyEuu6_d08FwTvL56RJm8TE7FgB50mZ7k2YETbu2HDtsPIgDoGsHjjOCl0uU32S-kw0l16ipMw0VHxewpyUYdipeVSk_vYrWjSw40znNT2UA-ahox6p6uYFEDWyhla0i0AmVVthEuCTn17WFpRyfEIJUTTed7Pn-StpcpsYHXkvCEgPq_-znxWWIL2uQjgTc8cYe1c_iHz-fYkSWrIZPZ36Q",
-        deeplink: nil
-    ),
-
-
-    Action(title: "Firebase DynLink cionita+tlm@adoreme.com (ELITE)",
-           userToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJ6bFMwRVZycnFWS3duOXRmTnFpVDJQMXFlMGZPWmRiejZWcHVVMFBCTTgifQ.eyJzdWIiOiIyNjM5Mjg1NCIsImlzcyI6Ikd3LU1haW4iLCJpYXQiOjE2Mzc5MzQzMzIsImV4cCI6MTY1MzcxNDMzMn0.I1jaqc_B9ykid0ROFGEhDBE3M3c3Nx9NovZ1CeX6_r1gEp8w7XvpgsjlmSAx0dhZBxCaYRyhsuRgZ0adlnt32tjXF4KI9UO_iQPgFr2Q3DxMzTn5eJXEa7iYeFojw5V9jSuBZLV2hrzp6PhzuZfH5-Q2UPNa5ade7kUpFkfJzXuJ9x1DosmmlP-KdYIcrOXB-emFYzVpTxvnW09FEXY1w_2OeZM8rwYo25Cl8-ctZrKT1-PRxFnWePKSp_IWoOPLUe5UpLFRx5BSa2CrrLnr6WkiBDZWXA5uTQdHQ5X4hLGDhbgFm1FQ-t2k3gzf_PvrsbRARt9QFpIgXWmyWEe5Gw",
-           deeplink: nil
-          ),
-
+    Action(title: "No softlogin", userToken: nil, deeplink: nil),
+    Action(title: "Logout", userToken: nil, deeplink: .init(path: "/logout")),
+    Action(title: "Close app", userToken: nil, deeplink: .init(path: "/close-app")),
+    Action(title: "EXVIP", userToken: userExVip, deeplink: nil),
+    Action(title: "VIP", userToken: userVip, deeplink: nil),
+    Action(title: "ELITE", userToken: userElite, deeplink: nil),
+    Action(title: "Firebase DynLink", userToken: nil, deeplink: nil),
+    Action(title: "Firebase DynLink EXVIP", userToken: userExVip, deeplink: nil),
+    Action(title: "Firebase VIP", userToken: userVip, deeplink: nil),
+    Action(title: "Firebase DynLink ELITE", userToken: userElite, deeplink: nil),
 ]
 
 struct Deeplink {
