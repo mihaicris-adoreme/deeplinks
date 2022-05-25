@@ -190,6 +190,14 @@ let deeplinks: [Deeplink] = [
     .init(path: "/workout-clothes"),
     .init(path: "/workout-clothes/leggings-tights"),
     .init(path: "/workout-clothes/sport-bras"),
+
+    .init(path: "/bras-and-panties/bras-panties"),
+    .init(path: "/sexy-lingerie/lingerie"),
+    .init(path: "/sleepwear-2/sleepwear"),
+    .init(path: "/swim/swimwear"),
+    .init(path: "/loungewear/loungewear"),
+    .init(path: "/panties/panties"),
+
     .init(path: "-----------Pages---------------"),
     .init(path: "/app-survey"),
     .init(path: "/auth/reset-password", queryItems: [URLQueryItem(name: "reset_password_token", value: "TOKEN_MISSING")]),
